@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.hardware.usb.UsbDevice" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="usbDevice"
+            type="UsbDevice" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{Html.fromHtml(String.format(`Product Name: %s`, usbDevice.productName ?? @string/empty_error))}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/tvManufacturerName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDeviceName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Device Name: ` + usbDevice.deviceName}"
+                    app:layout_constraintBottom_toTopOf="@+id/tvVendorId"
+                    app:layout_constraintEnd_toEndOf="@+id/tvManufacturerName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/tvManufacturerName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvManufacturerName" />
+
+                <TextView
+                    android:id="@+id/tvVendorId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Vendor ID: ` + Integer.toString(usbDevice.vendorId) + `(0x` + String.format(`%04x`, usbDevice.vendorId) + `)`}"
+                    app:layout_constraintBottom_toTopOf="@+id/tvProductId"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDeviceName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/tvDeviceName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeviceName" />
+
+                <TextView
+                    android:id="@+id/tvProductId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Product ID: ` + Integer.toString(usbDevice.productId) + `(0x` + String.format(`%04x`, usbDevice.productId) + `)`}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tvVendorId"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/tvVendorId"
+                    app:layout_constraintTop_toBottomOf="@+id/tvVendorId" />
+
+                <TextView
+                    android:id="@+id/tvManufacturerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{Html.fromHtml(String.format(`Manufacturer Name: %s`, usbDevice.manufacturerName ?? @string/empty_error))}"
+                    app:layout_constraintBottom_toTopOf="@+id/tvDeviceName"
+                    app:layout_constraintEnd_toEndOf="@+id/tvProductName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/tvProductName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

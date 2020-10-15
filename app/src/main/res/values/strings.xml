@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">View Usb Devices</string>
+    <string name="empty_error">&lt;font color=#FF0000>未查询到&lt;/font></string>
+</resources>
