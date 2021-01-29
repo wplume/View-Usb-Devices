@@ -9,7 +9,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         def formattedDate = new Date().format('yyyyMMdd-HHmmss')
-        versionName "1.0.3-" + formattedDate
+        versionName "1.0.4-" + formattedDate
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

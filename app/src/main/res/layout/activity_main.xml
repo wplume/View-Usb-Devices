@@ -8,7 +8,7 @@
         <import type="com.windplume.viewusbdevices.UsbDevicesViewModel" />
 
         <variable
-            name="usbDevices"
+            name="viewModel"
             type="UsbDevicesViewModel" />
     </data>
 
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{`USB设备数量：`}"
+            android:text="@{`USB设备数量：` + viewModel.usbDevices.size()}"
             app:layout_constraintStart_toStartOf="@+id/recyclerView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="USB设备数量：3"/>

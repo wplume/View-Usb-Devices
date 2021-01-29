@@ -14,7 +14,7 @@ import java.util.List;
 
 class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private final List<UsbDevice> usbDevices;
+    private List<UsbDevice> usbDevices;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final com.windplume.viewusbdevices.databinding.RecycleviewItemBinding binding;
@@ -26,6 +26,10 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public MyAdapter(List<UsbDevice> usbDevices) {
+        this.usbDevices = usbDevices;
+    }
+
+    public void setUsbDevices(List<UsbDevice> usbDevices) {
         this.usbDevices = usbDevices;
     }
 
