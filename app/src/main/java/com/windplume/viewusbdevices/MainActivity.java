@@ -38,11 +38,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+            if (device == null) return;
+            String productName = "";
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                productName = device.getProductName();
+            }
             if (Objects.equals(intent.getAction(), ATTACHED)) {
-                Toast.makeText(context, "检测到新的USB设备", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, String.format(Locale.CHINA, "检测到新的USB设备: %s/%d, %d", productName, device.getVendorId(), device.getProductId()), Toast.LENGTH_SHORT).show();
                 adapter.addUsbDevice(device);
             } else if (Objects.equals(intent.getAction(), DETACHED)) {
-                Toast.makeText(context, "检测到USB设备断开", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, String.format(Locale.CHINA, "检测到USB设备断开: %s/%d, %d", productName, device.getVendorId(), device.getProductId()), Toast.LENGTH_SHORT).show();
                 adapter.removeUsbDevice(device);
             }
         }
